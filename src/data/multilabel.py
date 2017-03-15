@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import warnings
 
 def multilabel_sample(y, size=1000, min_count=5, seed=None):
     """ Takes a matrix of binary labels `y` and returns
@@ -23,7 +24,7 @@ def multilabel_sample(y, size=1000, min_count=5, seed=None):
 
     if y.shape[1] * min_count > size:
         msg = "Size less than number of columns * min_count, returning {} items instead of {}."
-        warn(msg.format(y.shape[1] * min_count, size))
+        warnings.warn(msg.format(y.shape[1] * min_count, size))
         size = y.shape[1] * min_count
 
     rng = np.random.RandomState(seed if seed is not None else np.random.randint(1))
